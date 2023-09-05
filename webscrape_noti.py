@@ -94,7 +94,7 @@ async def getENotice():
                     "Referer": "https://enotice.coj.go.th/",
                     "Referrer-Policy": "strict-origin-when-cross-origin"
                 },
-                data=b'type=all&keyword=%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%81%E0%B8%B3%E0%B9%80%E0%B8%99%E0%B8%B4%E0%B8%94'
+                data=b'type=all&keyword=<KEYWORD>'
             )
 
             # print('getENotice [DEBUG] | text : %s'%(pageReq.text))
@@ -150,7 +150,7 @@ async def getRatchakitja():
                     "Referer": "https://ratchakitcha.soc.go.th/",
                     "Referrer-Policy": "strict-origin-when-cross-origin"
                 },
-                data=b'action=search&search-keyword=%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%81%E0%B8%B3%E0%B9%80%E0%B8%99%E0%B8%B4%E0%B8%94&search-field=title&type%5B%5D=%E0%B8%81&type%5B%5D=%E0%B8%82&type%5B%5D=%E0%B8%84&type%5B%5D=%E0%B8%87&type%5B%5D=%E0%B8%87%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9'
+                data=b'action=search&search-keyword=<KEYWORD>&search-field=title&type%5B%5D=%E0%B8%81&type%5B%5D=%E0%B8%82&type%5B%5D=%E0%B8%84&type%5B%5D=%E0%B8%87&type%5B%5D=%E0%B8%87%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9'
             )
             pq = PyQuery(pageReq.text)
             # print('getRatchakitja [DEBUG] | text : %s'%(pageReq.text))
@@ -186,7 +186,7 @@ async def getDolNotice():
     while getCnt < 3:
         try:
             pageReq = requests.get(
-                'http://announce.dol.go.th/index.php?searchprovince=&searchoffice=&searchtype=&searchtitle=&searchconcerned=%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%81%E0%B8%B3%E0%B9%80%E0%B8%99%E0%B8%B4%E0%B8%94&searchdocno=&btnSearch=',
+                'http://announce.dol.go.th/index.php?searchprovince=&searchoffice=&searchtype=&searchtitle=&searchconcerned=<KEYWORD>&searchdocno=&btnSearch=',
                 timeout=60,
                 headers={
                     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -340,7 +340,7 @@ async def main ():
                 getENotice(),
                 getRatchakitja(),
                 getDolNotice(),
-                getCojCaseTrack('ศาลแขวงธนบุรี', False, 'ผบ', '399', '2566')
+                getCojCaseTrack('<COURTNAMEINTHAI>', False, '<CASEPREFIX>', '<CASENO>', '<CASEYEAR>')
             ]
             # [ getPageLatestPost('Training.Lawyer') ]
         ))
